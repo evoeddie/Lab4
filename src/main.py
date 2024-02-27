@@ -60,16 +60,19 @@ def task2_fun(shares):
         
 def task3_fun(shares):
     
-    
+    enc1 = Encoder("enc1", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     enc2 = Encoder("enc2", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
-    moe = motordriver (pyb.Pin.board.PC1, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
+    moe1 = motordriver(pyb.Pin.board.PC1, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
+    moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
+    
+    
     enc2.zero()
     queue_size = 100
 
 
     # Paramters for the contoller
-    Kp = .005 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 50000 #int(input("Enter the set-point =  "))
+    Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
+    setpoint = 65535 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -126,8 +129,8 @@ def task3_fun(shares):
                 row = f"{pos_list[i]}"
                 print(row)
                 
-            if not queue_size.any():
-                state = 3
+        
+            state = 3
             
         elif (state == S3_done):
             pass
