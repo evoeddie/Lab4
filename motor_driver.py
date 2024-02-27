@@ -11,7 +11,7 @@ class motordriver:
         pins and turning off the motor for safety. 
         @param en_pin (There will be several parameters)
         """
-        print ("Creating a motor driver")
+        # print ("Creating a motor driver")
         en_pin = pyb.Pin(en_pin, pyb.Pin.OUT_PP)
         en_pin.value(1)
         self.in1pin = pyb.Pin(in1pin, pyb.Pin.OUT_PP) # allows variable to be used across functions
@@ -31,14 +31,14 @@ class motordriver:
         @param level A signed integer holding the duty
                cycle of the voltage sent to the motor 
         """
-        print (f"Setting duty cycle to {level}")
-        print(level)
+        # print (f"Setting duty cycle to {level}")
+        # print(level)
         # if level positive
         if level > 0:
             self.ch1.pulse_width_percent(0)
             self.ch2.pulse_width_percent(level)
             
-            print("pos")
+            # print("pos")
         # if level negative, make level positive, then do switch level and 0
         elif level  == 0:
             self.ch1.pulse_width_percent(0)
@@ -46,7 +46,7 @@ class motordriver:
             #print("zero")
         else:
             evel_abs = abs(level)
-            print(level)
+            # print(level)
             self.ch1.pulse_width_percent(evel_abs)
             self.ch2.pulse_width_percent(0)
             #print("negative")

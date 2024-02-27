@@ -75,7 +75,7 @@ class Encoder:
         
         self.delta_summed += self.delta # keeps summing the deltas
         
-        print('delta total',self.delta_summed)
+        #print('delta total',self.delta_summed)
         
         # save previous value
         self.previous_counter_val = self.current_counter_val
