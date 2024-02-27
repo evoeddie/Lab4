@@ -6,12 +6,8 @@ using a closed-loop control. We will see how we can properly demonstrate the abi
 tasks efficiently to still have proper control over multiple devices concurrently. 
 
 We will then run our task on the motor with a flywheel while plotting the results to compare
-step response, both in slow and slower rate to then compare the controller's performance.
+step response, both at slow and slower rate to then compare the controller's performance.
 Finally, we will make two tasks that run two motors under closed-loop control at the same time.
 
 
-## Single Motor Control Task
 
-## Step Response Analysis
-
-## Dual Motor Control Task
