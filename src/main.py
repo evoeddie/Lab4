@@ -69,7 +69,7 @@ def task3_fun(shares):
 
     # Paramters for the contoller
     Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 535 #int(input("Enter the set-point =  "))
+    setpoint = 1035 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -113,9 +113,9 @@ def task3_fun(shares):
                 pos_list.append(pos.get())
 
             # this is to look nice
-            for i in range(queue_size):
+            #for i in range(queue_size):
                 #row = f"{time_list[i]}, {pos_list[i]}"
-                print(row)
+                #print(row)
 
             print('Time')
             # this is indep time
@@ -151,7 +151,7 @@ def task4_fun(shares):
 
     # Paramters for the contoller
     Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 65535 #int(input("Enter the set-point =  "))
+    setpoint = 1035 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -195,9 +195,9 @@ def task4_fun(shares):
                 pos_list.append(pos.get())
 
             # this is to look nice
-            for i in range(queue_size):
+            #for i in range(queue_size):
                 #row = f"{time_list[i]}, {pos_list[i]}"
-                print(row)
+               # print(row)
             
             print('Time')
             # this is indep time
