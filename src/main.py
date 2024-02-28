@@ -69,7 +69,7 @@ def task3_fun(shares):
 
     # Paramters for the contoller
     Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 1035 #int(input("Enter the set-point =  "))
+    setpoint = 5502 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -151,7 +151,7 @@ def task4_fun(shares):
 
     # Paramters for the contoller
     Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 1035 #int(input("Enter the set-point =  "))
+    setpoint = 2349 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -241,7 +241,7 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(share0, q0))
     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
                         profile=True, trace=False, shares=(share0, q0))
-    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=25,
+    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=10,
                         profile=True, trace=False, shares=(share0, q0))
     task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=25,
                         profile=True, trace=False, shares=(share0, q0))
@@ -249,7 +249,7 @@ if __name__ == "__main__":
     cotask.task_list.append(task1)
     cotask.task_list.append(task2)
     cotask.task_list.append(task3)
-    cotask.task_list.append(task4)
+    #cotask.task_list.append(task4)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
     # possible before the real-time scheduler is started
