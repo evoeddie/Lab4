@@ -22,11 +22,15 @@ point the motor is away for too long causing our plot and the motor to have tons
 oscillation.
 
 
+
+
 ![image](https://github.com/evoeddie/Lab4/assets/157066050/7d2729fd-2002-4f26-a57a-e06b2834160a)
 Using the same results we had for the first plot and comparing the system when two motors are 
 connected. We can see that it takes a longer time to reach our position and we also can see that
 the second motor doesn't oscillate as much as our first motor did while having a task time of 25ms and a Kp of 0.03.
 
 
-
+Looking at these results we can conclude that when adding more components to our system we can 
+expect to reduce our task time so that our controller can go check on other tasks while trying
+to also keep precision at an optimal range.
 
