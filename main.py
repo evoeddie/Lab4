@@ -129,7 +129,7 @@ def task4_fun(shares):
 
 
     # Paramters for the contoller 0.03
-    Kp = .09 #float(input("Enter the proportional gain (Kp) =  "))
+    Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
     setpoint = 50500 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      

@@ -59,8 +59,8 @@ def task2_fun(shares):
         yield 0
         
 def task3_fun(shares):
-    
-    enc2 = Encoder("enc2", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
+    enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
+    #enc2 = Encoder("enc2", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
 
     enc2.zero()
@@ -87,7 +87,7 @@ def task3_fun(shares):
 
             reader_value = enc2.read() #Reads encoder 2 value
             PWM = controller_obj2.run(reader_value) 
-            moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
+            moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
             counter += 1
             
             if counter == queue_size:
@@ -100,36 +100,14 @@ def task3_fun(shares):
             time = tup[0]
             print(time)
             pos = tup[1]
-
-            # Initalize lists to store data
-            time_list = []
-            pos_list =[]
-
-            # Store time and position data in lists
-            for i in range(queue_size1):
-                time_list.append(time.get())
+            
+            print('TIME')
+            while time.any():
+                print(time.get())
+            print('POSITION')
+            while pos.any():
+                print(pos.get())
                 
-            for i in range(queue_size1):
-                pos_list.append(pos.get())
-
-            # this is to look nice
-            #for i in range(queue_size):
-                #row = f"{time_list[i]}, {pos_list[i]}"
-                #print(row)
-
-            print('Time')
-            # this is indep time
-            for i in range(queue_size1):
-                row = f"{time_list[i]}"
-                print(row)
-
-            print('Position')
-            # this is indep pos
-            for i in range(queue_size1):
-                row = f"{pos_list[i]}"
-                print(row)
-                
-        
             state = 3
             
         elif (state == S3_done):
@@ -143,15 +121,15 @@ def task3_fun(shares):
 
 def task4_fun(shares):
     
-    enc1 = Encoder("enc1", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
+    enc1 = enc2 = Encoder("enc1", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
     moe1 = motordriver(pyb.Pin.board.PC1, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
     enc1.zero()
     queue_size = 100
 
 
-    # Paramters for the contoller
-    Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
+    # Paramters for the contoller 0.03
+    Kp = .09 #float(input("Enter the proportional gain (Kp) =  "))
     setpoint = 50500 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
@@ -170,7 +148,7 @@ def task4_fun(shares):
             
             reader_value = enc1.read() #Reads encoder 1 value
             PWM = controller_obj.run(reader_value) 
-            moe1.set_duty_cycle(-PWM) #Ajust motor 1 postion
+            moe1.set_duty_cycle(PWM) #Ajust motor 1 postion
             counter += 1
             
             if counter == queue_size:
@@ -183,34 +161,13 @@ def task4_fun(shares):
             time = tup[0]
             print(time)
             pos = tup[1]
-
-            # Initalize lists to store data
-            time_list = []
-            pos_list =[]
-
-            # Store time and position data in lists
-            for i in range(queue_size):
-                time_list.append(time.get())
-                
-            for i in range(queue_size):
-                pos_list.append(pos.get())
-
-            # this is to look nice
-            #for i in range(queue_size):
-                #row = f"{time_list[i]}, {pos_list[i]}"
-               # print(row)
             
-            print('Time')
-            # this is indep time
-            for i in range(queue_size):
-                row = f"{time_list[i]}"
-                print(row)
-                
-            print('Position')
-            # this is indep pos
-            for i in range(queue_size):
-                row = f"{pos_list[i]}"
-                print(row)
+            print('TIME')
+            while time.any():
+                print(time.get())
+            print('POSITION')
+            while pos.any():
+                print(pos.get())
                 
             state = 3
             
@@ -243,9 +200,9 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(share0, q0))
     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
                         profile=True, trace=False, shares=(share0, q0))
-    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=10,
+    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=25,
                         profile=True, trace=False, shares=(share0, q0))
-    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=10,
+    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=25,
                         profile=True, trace=False, shares=(share0, q0))
     
     cotask.task_list.append(task1)
