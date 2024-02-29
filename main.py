@@ -101,13 +101,6 @@ def task3_fun(shares):
             print(time)
             pos = tup[1]
 
-            # Initalize lists to store data
-            time_list = []
-            pos_list =[]
-
-            # Store time and position data in lists
-#             for i in range(queue_size1):
-#                 time_list.append(time.get())
             while time.any():
                 print(time.get(),',',pos.get())
                 
@@ -164,34 +157,9 @@ def task4_fun(shares):
             time = tup[0]
             print(time)
             pos = tup[1]
-
-            # Initalize lists to store data
-            time_list = []
-            pos_list =[]
-
-            # Store time and position data in lists
-            for i in range(queue_size):
-                time_list.append(time.get())
-                
-            for i in range(queue_size):
-                pos_list.append(pos.get())
-
-            # this is to look nice
-            #for i in range(queue_size):
-                #row = f"{time_list[i]}, {pos_list[i]}"
-               # print(row)
             
-            print('Time')
-            # this is indep time
-            for i in range(queue_size):
-                row = f"{time_list[i]}"
-                print(row)
-                
-            print('Position')
-            # this is indep pos
-            for i in range(queue_size):
-                row = f"{pos_list[i]}"
-                print(row)
+            while time.any():
+                print(time.get(),',',pos.get())
                 
             state = 3
             
@@ -231,7 +199,7 @@ if __name__ == "__main__":
     
     cotask.task_list.append(task1)
     cotask.task_list.append(task2)
-    #cotask.task_list.append(task3)
+    cotask.task_list.append(task3)
     cotask.task_list.append(task4)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
