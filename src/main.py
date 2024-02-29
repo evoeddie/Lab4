@@ -59,6 +59,10 @@ def task2_fun(shares):
         yield 0
         
 def task3_fun(shares):
+    """!
+    Task for motor control using an encoder and close-loop controller.
+    @param A tuple of a share and queue from which this task also gets data
+    """
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     #enc2 = Encoder("enc2", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
@@ -120,6 +124,10 @@ def task3_fun(shares):
         yield 0
 
 def task4_fun(shares):
+    """!
+    Task for motor control using an encoder and close-loop controller.
+    @param A tuple of a share and queue from which this task also gets data
+    """
     
     enc1 = enc2 = Encoder("enc1", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
     moe1 = motordriver(pyb.Pin.board.PC1, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
