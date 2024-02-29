@@ -100,9 +100,13 @@ def task3_fun(shares):
             time = tup[0]
             print(time)
             pos = tup[1]
-
+            
+            print('TIME')
             while time.any():
-                print(time.get(),',',pos.get())
+                print(time.get())
+            print('POSITION')
+            while pos.any():
+                print(pos.get())
                 
             state = 3
             
@@ -124,8 +128,8 @@ def task4_fun(shares):
     queue_size = 100
 
 
-    # Paramters for the contoller
-    Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
+    # Paramters for the contoller 0.03
+    Kp = .09 #float(input("Enter the proportional gain (Kp) =  "))
     setpoint = 50500 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
@@ -158,8 +162,12 @@ def task4_fun(shares):
             print(time)
             pos = tup[1]
             
+            print('TIME')
             while time.any():
-                print(time.get(),',',pos.get())
+                print(time.get())
+            print('POSITION')
+            while pos.any():
+                print(pos.get())
                 
             state = 3
             
@@ -192,9 +200,9 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(share0, q0))
     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
                         profile=True, trace=False, shares=(share0, q0))
-    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=10,
+    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=25,
                         profile=True, trace=False, shares=(share0, q0))
-    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=10,
+    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=25,
                         profile=True, trace=False, shares=(share0, q0))
     
     cotask.task_list.append(task1)
