@@ -245,7 +245,7 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(share0, q0))
     task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=10,
                         profile=True, trace=False, shares=(share0, q0))
-    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=25,
+    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=10,
                         profile=True, trace=False, shares=(share0, q0))
     
     cotask.task_list.append(task1)
