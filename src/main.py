@@ -69,14 +69,14 @@ def task3_fun(shares):
 
     # Paramters for the contoller
     Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 5502 #int(input("Enter the set-point =  "))
-    controller_obj = Controller(Kp, setpoint, queue_size)
+    setpoint = 50500 #int(input("Enter the set-point =  "))
+    controller_obj2 = Controller(Kp, setpoint, queue_size)
      
     state = 1
     S1_data = 1
     S2_print = 2
     S3_done = 3
-    queue_size = 100
+    queue_size1 = 100
     counter = 0
     
     # Loop over a set number of iterations
@@ -86,7 +86,7 @@ def task3_fun(shares):
         if (state == S1_data):
 
             reader_value = enc2.read() #Reads encoder 2 value
-            PWM = controller_obj.run(reader_value) 
+            PWM = controller_obj2.run(reader_value) 
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             counter += 1
             
@@ -96,7 +96,7 @@ def task3_fun(shares):
         elif (state == S2_print):
             print('Motor 2, Pin A1 & A0')
             print(f"{reader_value} {PWM}")
-            tup = controller_obj.data()
+            tup = controller_obj2.data()
             time = tup[0]
             print(time)
             pos = tup[1]
@@ -106,10 +106,10 @@ def task3_fun(shares):
             pos_list =[]
 
             # Store time and position data in lists
-            for i in range(queue_size):
+            for i in range(queue_size1):
                 time_list.append(time.get())
                 
-            for i in range(queue_size):
+            for i in range(queue_size1):
                 pos_list.append(pos.get())
 
             # this is to look nice
@@ -119,13 +119,13 @@ def task3_fun(shares):
 
             print('Time')
             # this is indep time
-            for i in range(queue_size):
+            for i in range(queue_size1):
                 row = f"{time_list[i]}"
                 print(row)
 
             print('Position')
             # this is indep pos
-            for i in range(queue_size):
+            for i in range(queue_size1):
                 row = f"{pos_list[i]}"
                 print(row)
                 
@@ -133,6 +133,7 @@ def task3_fun(shares):
             state = 3
             
         elif (state == S3_done):
+            moe2.set_duty_cycle(0)
             pass
         
         else:
@@ -151,7 +152,7 @@ def task4_fun(shares):
 
     # Paramters for the contoller
     Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 2349 #int(input("Enter the set-point =  "))
+    setpoint = 50500 #int(input("Enter the set-point =  "))
     controller_obj = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -214,6 +215,7 @@ def task4_fun(shares):
             state = 3
             
         elif (state == S3_done):
+            moe1.set_duty_cycle(0)
             pass
     
         else:
@@ -249,7 +251,7 @@ if __name__ == "__main__":
     cotask.task_list.append(task1)
     cotask.task_list.append(task2)
     cotask.task_list.append(task3)
-    #cotask.task_list.append(task4)
+    cotask.task_list.append(task4)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
     # possible before the real-time scheduler is started
